@@ -353,7 +353,7 @@ def get_attendance_graph():
 
 @app.route('/secret', methods=["POST"])
 def get_secret():
-    apikey = ''
+    apikey = java_api
     return jsonify({"api": apikey})
 
 
