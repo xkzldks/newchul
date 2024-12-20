@@ -1,7 +1,6 @@
 from flask import Flask, url_for, render_template, request, redirect, session, jsonify, flash, send_file
 from datetime import datetime
 from model2 import db
-import settings
 
 now = datetime.now()
 
