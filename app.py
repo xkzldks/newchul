@@ -376,5 +376,5 @@ def copy_chul():
 
 
 if __name__ == '__main__':
-    app.secret_key = settings.get_secret("app_secret")
+    app.secret_key = app_secret
     app.run('0.0.0.0', debug=True)
