@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block content %}
+<HEAD>
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js" integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/static/jquery.min.js"></script>
+<script type="text/javascript" src="/static/qrcode.js"></script>
+<script type="module" src=".\apikey.js"></script>
+
+<title> 청년부 출석 | 카카오</title>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="\static\kakao.js"></script>
+<script type="text/css">
+    #qrcode {
+			width : 300px;
+			height : 300px;
+			margin : 0 auto;
+			padding : 0;
+			border : 1px solid #000000;
+			background-color : #ffffff;
+
+			/* 컨테이너 배치 정렬 실시 */
+			float : top;
+			position : relative;
+			top : 10%;
+			left : 0%;
+
+			/* 마우스 커서 스타일 정의 */
+			cursor : default;
+
+			/* 스크롤 자동 지정 */
+			overflow : auto;
+		}
+</script>
+
+<script language="JavaScript">
+
+		var SetTime = 130;
+		function msg_time() {
+
+			m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
+
+			var msg = "현재 남은 시간은 <font color='red'>" + m + "</font> 입니다.";
+
+			document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌
+
+			SetTime--;					// 1초씩 감소
+
+			if (SetTime < 0) {			// 시간이 종료 되었으면..
+				clearInterval(tid);		// 타이머 해제
+				alert("이 창은 만료되었습니다.");
+				window.location.reload();
+			}
+
+		}
+        function TimerStart(){
+            tid=setInterval('msg_time()',1000)
+         };
+</script>
+</HEAD>
+<body>
+<br>
+    <div style="display : flex;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);min-width: 320px;text-align: center;flex-direction: column;flex-wrap: wrap;align-content: center;" >
+    <!--    <button class="api-btn" onclick="requestUserInfo()" >사용자 정보 가져오기</button>-->
+        <div id="test"></div>
+        <div id="qrCode"></div>
+        <div id="ViewTimer"></div>
+        <label><input  type="checkbox" id = "checkboxDateC" name="checkboxDate" value="self" onclick="checkboxDateS()"/> 날짜 수동입력</label>
+        <a href = "#" id = "kakaoBtn" style = "" onclick ="kakaoLogin();"><img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오계정 로그인"/></a>
+        <p style="text-align : center; font-size : 11px;"><br>처음버튼을 누르면 정보제공 동의창이 나옵니다. <br> 정보제공 동의를 하셔야 서비스 이용이 가능합니다. <br> 세션이 만료되어 qr가 사라진 경우 버튼을 한번더 눌러주세요. </p>
+    </div>
+
+    <p id="token-result"></p>
+
+</body>
+
+{% endblock %}

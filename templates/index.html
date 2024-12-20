@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>JJCH | 대문</title>
+    <link href="/static/css/index.css" rel="stylesheet" type="text/css"/>
+    <script src="\static\index.js"></script>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <div style="text-align : center; display : flex;justify-content: center;">
+        <img src="/static/image/icon2.png" width="24px" height ="24px" alt="시온청년부">
+        <h3 style="display : inline; font-size : 24px;"> 진주교회 청년부 출석체크사이트</h3>
+    </div>
+    <div>
+        {% if session['username'] %}
+            {% if session['auth'] < '1' %}
+        <div style="display : none;">
+            <p id = 'nowYear'></p>
+            <p id = 'nowMonth'></p>
+            <p id = 'nowDate'></p>
+        </div>
+        <h4 style = "text-align: right; padding-right: 15%;"> [{{session['company'] }}] {{ session['username'] }} 회원 </h4>
+        <br>
+        <div style="text-align : center;">
+            <h3 style="text-align : center; display : inline;" id = 'rangeYear'></h3>
+            <h3 style="display : inline;">출석률</h3>
+        </div>
+        <br>
+        <div style="text-align: center;">
+            <p style="display : inline; text-align : left;" id = 'dr_start'></p>
+            <p style="display : inline; text-align : center;" id = 'now_Date'></p>
+            <p style="display : inline; text-align : right;" id = 'dr_end'></p>
+        </div>
+        <hr>
+        <div class = "guestDiv container" style="">
+            <br>
+            <script>
+            setTimeout(function(){
+                userAttendance();
+            },200);
+            </script>
+            <div style = '' id ='userGraph'></div>
+            <br>
+        </div>
+        <div style="text-align : center; display: none;">
+            <a class="dribbble" href="https://dribbble.com/shots/7441241-Button-Hover-Effects" target="_blank"><img src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg" alt=""></a>
+            <button class = "custom-btn btn-16" style="display : inline;" id = "ex_dr" onclick="ex_dr()">&#8882;</button>
+            <a style="display : inline;" id = "now_day"> now! </a>
+            <button class = "custom-btn btn-15" style="display : inline;" id = "fu_dr" onclick="fu_dr()">&#8883;</button>
+
+        </div>
+        <br>
+        <br>
+        <br>
+        <div>
+            <h3 style="text-align : center;">qr출석</h3>
+            <div id = 'userQr'></div>
+        </div>
+        <hr>
+        <p style="font-size : 10px; color : grey; text-wrap: auto;">최종 출석률은 당해 임원 임기의 상황에 따라 산정 기간 및 방법이 변동될 수 있어 <br> 위 출석률과 차이가 있을 수 있습니다.</p>
+            {% else %}
+                <h5 style = "text-align : center;"> {{ session['username'] }} 관리자님</h5>
+
+                <form class = "text-center">
+                    <a class = "snip1535" href="{{ url_for('check') }}">>> 출석체크 <<</a>
+                </form><br>
+                <br>
+                <br>
+                <h5 class = "text-center">{{ session['company'] }} 명단</h5>
+                <script>
+                    getlist()
+                </script>
+
+        <div style="width : 90%; margin-left : 5%; border: groove;">
+                    <div style="overflow:auto; border-collapse:collapse; " class="reviews">
+                        <div style = "background : #ff93a6;text-align : center;">회원 승인대기</div>
+                    <table width="100%" cellspacing="0" cellpadding="0" class="table">
+                        <thead class = "thz" style="position: sticky; top: 0px;">
+                            <tr style="border-style: hidden;">
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td1_1" scope="col">이름</th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td2_1" scope="col">ID</th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td3_1" scope="col">성별</th>
+<!--                                <th class = "thz" style="text-align : center;" id = "td4_1" scope="col">부서</th>-->
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td5_1" scope="col">권한</th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td6_1" scope="col">삭제</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tdz" id="x-box" style="border-style: hidden;"></tbody>
+                    </table>
+                    <div style = "background : #7adb7a; text-align : center;">회원명단</div>
+                    <table width="100%" cellspacing="0" cellpadding="0" class="table">
+                        <thead class = "thz" style="position: sticky; top: 0px;">
+                            <tr style="border-style: hidden;">
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td1_2" scope="col"></th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td2_2" scope="col"></th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td3_2" scope="col"></th>
+<!--                                <th class = "thz" style="text-align : center;" id = "td4_2" scope="col"></th>-->
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td5_2" scope="col"></th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td6_2" scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="tdz" id="0-box" style="border-style: hidden;"></tbody>
+                    </table>
+                        <div style = "background : #9bd5ff; text-align : center;">관리자명단</div>
+                    <table width="100%" cellspacing="0" cellpadding="0" class="table">
+                        <thead class = "thz" style="position: sticky; top: 0px;"></thead>
+                            <tr style="border-style: hidden;">
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td1_3" scope="col"></th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td2_3" scope="col"></th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td3_3" scope="col"></th>
+<!--                                <th class = "thz" style="text-align : center;" id = "td4_3" scope="col"></th>-->
+                                <th class = "thz" style="text-align : center;" id = "td5_3" scope="col"></th>
+                                <th class = "thz" style="text-align : center; width : 20%;" id = "td6_3" scope="col"></th>
+                            </tr>
+                        <tbody class="tdz" id="1-box" style="border-style: hidden;"></tbody>
+                    </table>
+                    </div>
+                </div>
+                <div id = "accessPanel"></div>
+        <br>
+        <p style="text-align : center;">현재 창은 관리자만 볼 수 있습니다.</p>
+            {% endif %}
+        {% else %}
+            <form class = "text-center">
+                <a class = "snip1535" href="{{ url_for('account.login') }}">>> 로그인 <<</a>
+            </form>
+            <br>
+            <div>
+                <div style="text-align : center;">
+                <img src = '/static/image/git.png' width="10px;">
+                <a href="https://github.com/xkzldks/zion_flask">
+                    xkzldks_github
+                </a>
+            </div>
+            <div style="text-align : center;">
+                <img src = '/static/image/cloudtype.png' width="55px;">
+                <a href="https://app.cloudtype.io/@naochugu/ziona">
+                    xkzldks_cloudtype
+                </a>
+            </div>
+                <br>
+                <br>
+         <!-- * 카카오맵 - 지도퍼가기 -->
+            <!-- 1. 지도 노드 -->
+            <div style=" width: 80%; margin-left : auto; margin-right : auto;" id="daumRoughmapContainer1659971295506" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+                <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+                <script charset="UTF-8">
+                new daum.roughmap.Lander({
+                    "timestamp" : "1659971295506",
+                    "key" : "2bb5a",
+                    "mapHeight" : "400"
+                }).render();
+                </script>
+            </div>
+            {% endif %}
+
+
+        </div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block content %}
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>JJCH | 그래프</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="static/graph.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <link href="static/css/graph.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+    <div class = 'container'><br>
+        {% if not session['username'] %}
+        <script>
+            alert("로그인이 필요한 서비스입니다. 로그인창으로 이동합니다.");
+        </script>
+        <meta http-equiv="refresh" content="0.01;url=/account/login">
+        {% endif %}
+        <div class="zt-span6 last"></div>
+
+        <div style="display:inline;">
+            <div style="text-align : right">
+                <span id="clock" style="color:gray;">clock</span>
+                <span id="apm" style="color:gray;"  >ampm</span>
+            </div>
+            <div style="text-align : center;" id = "daemoon_font">
+                <img  src="/static/image/icon2.png"  width ="24px" height ="24px" alt="">
+                <h3 style="display : inline;"> {{ session['company'] }} 출석률</h3>
+            </div>
+        </div>
+
+
+        <hr>
+        <h2> 출석그래프 </h2>
+        <h5 style="font-size : 15px">이 그래프는 전체인원을 출석률 순서로 출력합니다. 그래프와 하단의 표를 참고하여 각 상황에 맞게 정회원 계산하시면 됩니다.</h5>
+        <h5 style="font-size : 15px">출석률 70%이상 - 초록색(정회원) 나머지 하늘색(준회원), % 기준은 총회날부터 다음 총회 한달전 기간(약 52주 - 4주(총회 한달 전)), 연휴(설, 추석)는 전체 인원 출석한 것으로 침</h5>
+        <button class= "myButtonEtc"  onclick="history.back()"> 뒤로가기 </button>
+        <br>
+        <br>
+        <div id="datePanel"></div>
+        <div id="graphPanel"></div>
+
+
+    </div>
+    <br>
+    <p style="text-align : center">아래의 표 %기준은 현재 db에 존재하는 전체출석날짜를 기준</p>
+    <hr>
+    <h2 style="text-align : center">출석현황</h2>
+    <div style="text-align : center;">
+        <a href="" id="download" >
+            >>
+            <script>
+                date = new Date().toLocaleDateString();
+                document.write(date);
+            </script> 기준 출석현황 다운로드 << </a>
+    </div>
+
+
+    <div style="margin-left:auto;margin-right:auto;width: 95%; height:1000px; overflow: auto; white-space:nowrap; border-collapse:collapse; ">
+        <table border="0" cellspacing="0" cellpadding="0" id = 'csvtable' style="white-space: nowrap; width: 500px; border: 0px; border-collapse: collapse;">
+          <thead>
+            <tr id = 'tDate'>
+              <th class = 'thz' style="z-index: 3;" >이름|날짜</th>
+              <th class = 'thz' style="z-index: 1;" >%</th>
+            </tr>
+          </thead>
+          <tbody id = 'tChul'>
+          </tbody>
+        </table>
+    </div>
+    <hr>
+    <div style="text-align : center; font-size : 6px; font-color : gray;">
+            <p>진주교회 비전관 경남 진주시 의곡길16번길 15-1 (지번) 봉래동 189-9</p>
+            <p>made by ksh</p>
+<!--            <a href="#" id = "toTop" title="맨 위로">-->
+<!--                <img  style="display : block; margin-left : auto; margin-right : auto" src="/static/image/arrow.png"  width ="35" height ="35" alt="">-->
+<!--            </a>-->
+        </div>
+     <script>
+            var Target = document.getElementById("clock");
+            var Target_apm = document.getElementById("apm");
+            function clock() {
+                var time = new Date();
+                var hours = time.getHours();
+                var minutes = time.getMinutes();
+                var seconds = time.getSeconds();
+                var AmPm ="AM";
+                if(hours > 12){
+                    var AmPm ="PM";
+                    hours %= 12;
+                }
+
+                Target.innerText = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+                Target_apm.innerText = `${AmPm}`;
+            }
+            clock();
+            setInterval(clock, 1000); // 1초마다 실행
+
+            (function( $ ) {
+            $(function() {
+                function animated_contents() {
+                    $(".zt-skill-bar > div ").each(function (i) {
+                        var $this  = $(this),
+                            skills = $this.data('width');
+                        $this.css({'width' : skills + '%'});
+                    });
+                }
+
+                if(jQuery().appear) {
+                    $('.zt-skill-bar').appear().on('appear', function() {
+                        animated_contents();
+                    });
+                }
+                else{
+                    animated_contents();
+                }
+            });
+        }(jQuery));
+
+
+</script>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="진주교회 청년부 출석체크사이트" />
+    <meta property="og:description" content="출석체크" />
+    <meta property="og:image" content="/static/icon2.png" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <!-- JS -->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/317fa6bd3a.js" crossorigin="anonymous"></script>
+
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+      <!-- 자동스크롤-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollToPlugin.min.js" integrity="sha512-kSI9CgGh60rJbNVeMJvfNX0UTKAq8LEOea/yKJQbFpIroxT7bf9/zUFXbnfsQP5F6xlOOHtCfBPgsE1ceiHnRw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- jquery CDN -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- jquery UI CDN -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- 언어 별 CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/i18n/jquery.ui.datepicker-ko.min.js"></script>
+    <!-- Date 라이브러리 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- 앱 아이콘 -->
+    <link rel="shortcut icon" href="/static/image/icon_android.png"/>
+    <link rel="apple-touch-icon" href="/static/image/icon_iphone.png"/>
+    <!-- 내부 CSS  -->
+    <link href="/static/css/login.css" rel="stylesheet" type="text/css"/>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js" integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/qrcode.js"></script>
+
+    <title> JJCH | 로그인</title>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="/static/kakao.js"></script>
+    {%with messages = get_flashed_messages()%}
+      {%if messages %}
+        <script type="text/javascript">
+          alert("{{messages[-1]}}");
+        </script>
+        {%endif%}
+      {%endwith%}
+    <script language="JavaScript">
+
+		var SetTime = 130;
+		function msg_time() {
+
+			m = Math.floor(SetTime / 60) + "분 " + (SetTime % 60) + "초";	// 남은 시간 계산
+
+			var msg = "현재 남은 시간은 <font color='red'>" + m + "</font> 입니다.";
+
+			document.all.ViewTimer.innerHTML = msg;		// div 영역에 보여줌
+
+			SetTime--;					// 1초씩 감소
+
+			if (SetTime < 0) {			// 시간이 종료 되었으면..
+				clearInterval(tid);		// 타이머 해제
+				alert("이 창은 만료되었습니다.");
+				window.location.reload();
+			}
+
+		}
+        function TimerStart(){
+            tid=setInterval('msg_time()',1000)
+         };
+</script>
+</head>
+<body>
+<input type="checkbox" id="menuicon">
+            <ul>
+                <li>
+                    <label for="menuicon">
+                        <span class="c"></span><span></span><span></span>
+                    </label>
+                </li>
+            </ul>
+            <div style="display : flex;font-size : 20px;flex-direction: column;justify-content: space-evenly;align-items: center;" class= "sidebar">
+                <br>
+                <br>
+                  <a class ="nav-link" href="/" aria-label="Product" style="color: white">
+                      <img alt="" src="/static/image/icon2.png" width="24px" height="24px">
+                      진주교회 청년부
+                  </a>
+                <br>
+                  <a href="/account/login" class="nav-link">로그인</a>
+                <br>
+                  <a href="/account/register" class="nav-link">회원가입</a>
+                <br>
+                <br>
+
+            </div>
+
+<nav class="navbar site-header">
+<div class="container" style="z-index : 20;">
+    <div>
+        <script >
+            date = new Date().toLocaleDateString();
+            document.write(date);
+        </script>
+    </div>
+    <a class ="nav-link" href="/" aria-label="Product" style="color: white">
+      <img alt="" src="/static/image/icon2.png" width="24px" height="24px">
+      진주교회 청년부
+    </a>
+    <a href="/account/login" class="nav-link">로그인</a>
+    <a href="/account/register" class="nav-link">회원가입</a>
+
+</div>
+
+</nav>
+
+
+
+
+<br>
+    <div style="display : flex;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);min-width: 320px;text-align: center;flex-direction: column;flex-wrap: wrap;align-content: center;" >
+        <h3>로그인</h3>
+        <br>
+        <div id="test"></div>
+        <div id="qrCode"></div>
+        <div id="ViewTimer"></div>
+
+        <form class="form-signin" id="kakaoInfo" method="POST" action= "/account/login"  style="display: none;flex-direction: column;">
+            <div style="display : block; margin-left : auto; margin-right : auto" class="int-area">
+                <a>ID</a>
+                <input style = "text-align : center" type="text" id = "mail" name = "email" placeholder="아이디 입력"/>
+                <label for = "mail"></label>
+            </div>
+            <br>
+            <div style="display : block; margin-left : auto; margin-right : auto" class="int-area" >
+                <a>PW</a>
+                <input style = "text-align : center;" type="password" id = "pass" name = "password" placeholder="비밀번호 입력" autocomplete="off" required/>
+                <label for = "pass"></label>
+            </div>
+            <label id="logiBtn" style="display:none"><input type="submit" value="&nbsp로그인&nbsp"></label>
+
+        </form>
+        <a href = "#" id = "kakaoBtn"  onclick ="kakaoLogin()"><img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="카카오계정 로그인"/></a>
+        <br>
+        <a href = "#" id = 'emailBtn' onclick = "emailLogin()" ><img style = "border: double grey 2px;border-radius: 8px;" src="/static/image/email.png" alt="이메일 로그인"/></a>
+
+    </div>
+
+    <p id="token-result"></p>
+
+</body>
+</html>

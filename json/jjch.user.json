@@ -1,0 +1,108 @@
+[{
+  "_id": {
+    "$oid": "675b86d331520c22fd5f750a"
+  },
+  "username": "김상현",
+  "userid": "xkzldks",
+  "password": "sha256$HDkonqblOFFabTl2$66f7f96c77b4a89ca29f9203c054945ab8f6726d461409d6f0ce3af914c7c05c",
+  "email": "xkzldks@kakao.com",
+  "gender": "male",
+  "birthday": "0521",
+  "company": "여호수아",
+  "auth": "1",
+  "significant": "asfd",
+  "birthyear": 1998,
+  "group": "ㅁㅁ",
+  "loginFormat": "kakao",
+  "certified": "o"
+},
+{
+  "_id": {
+    "$oid": "675e7f7601bf45de1b8963b9"
+  },
+  "username": "이유진",
+  "userid": "mylucky200",
+  "password": "sha256$cyv9M0SeAYxkQswr$dcb77d42bcda12e2e90a094deeac44d0e8811df584d1cc81158215a579b9ff74",
+  "email": "mylucky200@gmail.com",
+  "gender": "female",
+  "birthday": "0710",
+  "company": "여호수아",
+  "auth": "0",
+  "significant": "",
+  "birthyear": 1992,
+  "group": "새가족팀",
+  "loginFormat": "kakao",
+  "certified": "o"
+},
+{
+  "_id": {
+    "$oid": "675e7f7901bf45de1b8963ba"
+  },
+  "username": "김초연",
+  "userid": "kcy9127",
+  "password": "sha256$6srzp42X3ZsB8OXe$150469c8f98c32b0298d703039239c10a40034115ecb32e455f2b5648bede2bc",
+  "email": "kcy9127@naver.com",
+  "gender": "female",
+  "birthday": "0802",
+  "company": "여호수아",
+  "auth": "x",
+  "significant": "",
+  "birthyear": 1990,
+  "group": "새가족팀",
+  "loginFormat": "kakao",
+  "certified": "x"
+},
+{
+  "_id": {
+    "$oid": "675e7f7b01bf45de1b8963bb"
+  },
+  "username": "손준우",
+  "userid": "wnsdn6995",
+  "password": "sha256$afSKFfvGGVWcLcpu$bb89e7fddac2f558b7cc41995b60ef5a549c1941b165124ea3fd25d7ea86d28b",
+  "email": "wnsdn6995@naver.com",
+  "gender": "male",
+  "birthday": "0130",
+  "company": "시온",
+  "auth": "0",
+  "significant": "",
+  "birthyear": 2002,
+  "group": "새가족팀",
+  "loginFormat": "kakao",
+  "certified": "x"
+},
+{
+  "_id": {
+    "$oid": "675e7fe601bf45de1b8963bc"
+  },
+  "username": "홍한빛",
+  "userid": "gksqlc0410",
+  "password": "sha256$YmhfDxO4uvx4iDmd$377c41b0d2ec14cfa25dcc692c3ea639595ad6bc72c74c2256fae6b701546d24",
+  "email": "gksqlc0410@naver.com",
+  "gender": "male",
+  "birthday": "0607",
+  "company": "시온",
+  "auth": "x",
+  "significant": "",
+  "birthyear": 2006,
+  "group": "새가족팀",
+  "loginFormat": "kakao",
+  "certified": "x"
+},
+{
+  "_id": {
+    "$oid": "675e7ff401bf45de1b8963bd"
+  },
+  "username": "석지원",
+  "userid": "rypen",
+  "password": "sha256$L9qym5V0zP0LxDUw$d112270ce1273e20174d1bad63aa5f29528a496ad833433553f90653a5bcf3ec",
+  "email": "rypen@naver.com",
+  "gender": "male",
+  "birthday": "0603",
+  "company": "여호수아",
+  "auth": "x",
+  "significant": "",
+  "birthyear": 2006,
+  "group": "새가족팀",
+  "loginFormat": "kakao",
+  "certified": "x"
+}]

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>청년부 | 그룹 및 인원 정보</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js" integrity="sha512-zYXldzJsDrNKV+odAwFYiDXV2Cy37cwizT+NkuiPGsa9X1dOz04eHvUWVuxaJ299GvcJT31ug2zO4itXBjFx4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="/static/css/modify.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/static/modify.js"></script>
+</head>
+<body>
+<div style="text-align : center;">
+    <label><input type="radio" name="modeSelect" id="showInfo" onclick="showInfo()" value="0">info 모드</label>
+    <label><input type="radio" name="modeSelect" id="selectCheck" onclick="selectCheck()" value="1" checked="checked">check 모드</label>
+    <label><input type="radio" name="modeSelect" id="groupChange" onclick="groupChange()" value="2">Group 지정</label>
+</div>
+<div class="container" style="display : flex; justify-content: center;">
+    <div id = "listPanel"></div>
+   <div class="column">
+      <h1>1</h1>
+      <div class="list-group-item" draggable="true">Wash Clothes</div>
+      <div class="list-group-item" draggable="true">Take a stroll outside</div>
+   </div>
+   <div class="column">
+      <h1>2</h1>
+       <div class="list-group-item" draggable="true">Design Thumbnail</div>
+      <div class="list-group-item" draggable="true">Attend Meeting</div>
+      <div class="list-group-item" draggable="true">Fix workshop</div>
+      <div class="list-group-item" draggable="true">Visit the zoo</div>
+   </div>
+   <div class="column">
+      <h1>3</h1>
+   </div>
+</div>
+<script>
+    const columns = document.querySelectorAll(".column");
+        columns.forEach((column) => {
+          new Sortable(column, {
+            group: "shared",
+            animation: 150,
+            ghostClass: "blue-background-class"
+          });
+    });
+</script>
+</body>
+</html>
