@@ -160,15 +160,3 @@ cython_debug/
 #.idea/
 
 .DS_Store
-
-# account
-account.py
-
-# keys
-secrets.json
-
-# models
-model2.py
-
-# settings
-settings.py

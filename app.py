@@ -4,7 +4,6 @@ import account
 from flask import Flask, url_for, render_template, request, redirect, session, jsonify, flash, send_file
 from datetime import datetime
 import chulseck
-import settings
 from model2 import db
 import numpy as np
 
@@ -144,7 +143,7 @@ def autoSave():
 
     EMAIL_ADDR = 'naochugu@gmail.com'
 
-    EMAIL_PASSWORD = settings.get_secret("EMAIL_PASSWORD")  # 구글 앱 비밀번호
+    EMAIL_PASSWORD = ''
 
     # 2. SMTP 서버에 로그인
     smtp.login(EMAIL_ADDR, EMAIL_PASSWORD)
@@ -354,7 +353,7 @@ def get_attendance_graph():
 
 @app.route('/secret', methods=["POST"])
 def get_secret():
-    apikey = settings.get_secret("java_api")
+    apikey = ''
     return jsonify({"api": apikey})
 
 
