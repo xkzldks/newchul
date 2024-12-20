@@ -143,7 +143,7 @@ def autoSave():
 
     EMAIL_ADDR = 'naochugu@gmail.com'
 
-    EMAIL_PASSWORD = ''
+    EMAIL_PASSWORD = EMAIL_PASS
 
     # 2. SMTP 서버에 로그인
     smtp.login(EMAIL_ADDR, EMAIL_PASSWORD)
