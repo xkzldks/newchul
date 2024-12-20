@@ -7,8 +7,6 @@ import re
 from uuid import getnode
 import socket
 
-app = Flask(__name__)
-app.secret_key = app_secret
 blue_account = Blueprint("account", __name__, url_prefix="/account")
 
 
